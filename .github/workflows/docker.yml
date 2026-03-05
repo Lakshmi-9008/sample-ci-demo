@@ -1,0 +1,20 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t sample-ci-demo .
+
+      - name: Tag Docker image
+        run: docker tag sample-ci-demo sample-ci-demo:latest
